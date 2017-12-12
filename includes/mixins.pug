@@ -1,0 +1,89 @@
+mixin menuItem(arr)
+	li
+		a(href="#")= arr
+
+mixin showMainArticle(text)
+	hr
+	.row.column
+		h4(style="margin: 0;").text-center= text
+	hr 
+
+mixin brNewsCol(num)
+	case num
+		when 3
+			.column.show-for-medium
+				img(src="https://placehold.it/400x370&text=Look at me!" alt="image for article")
+		when 4
+			.column.show-for-large
+				img(src="https://placehold.it/400x370&text=Look at me!" alt="image for article")
+		default
+			.column
+				img(src="https://placehold.it/400x370&text=Look at me!" alt="image for article")
+
+mixin leftSideItem(text)
+	.row
+		.large-6.columns
+			p
+				img(src="https://placehold.it/600x370&text=Look at me!" alt="image for article")
+		.large-6.columns
+			h5
+				a(href="#")= text
+			p
+				span
+					i.fi-torso #{space} By Thadeus &nbsp;&nbsp;&nbsp;
+				span
+					i.fi-calendar #{space} 11/23/16 &nbsp;&nbsp;&nbsp;
+				span
+					i.fi-comments #{space} 6 comments
+			p
+				| Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae impedit beatae, ipsum delectus aperiam nesciunt magni facilis ullam.
+	hr
+mixin showFollowers(follower)
+	.column.text-center
+		i(class= follower.media)
+		h6= follower.num
+		p
+			small FOLLOWERS
+		br
+mixin showTrPosts(post)
+	.media-object
+		.media-object-section
+			img(src="https://placehold.it/100").thumbnail
+		.media-object-section
+			h5= post
+mixin header
+	.top-bar
+			.top-bar-left
+				ul.menu
+					each item in itemsName
+						+menuItem(item)
+			.top-bar-right
+				ul.menu
+					li
+						input(type="search" placeholder="Search")
+					li
+						button(type="button" class="button") Search
+mixin mainContent
+	.row
+		div(style="border-right: 1px solid #E3E5E8;").large-8.columns
+			article
+				each article in leftSideData
+					+leftSideItem(article)
+		.large-4.columns
+			aside
+				.row.small-up-3
+					each follower in socialData
+						+showFollowers(follower)
+				.row.column
+					p.lead TRENDING POSTS
+					each post in postArticles 
+						+showTrPosts(post)
+mixin footer
+	div(style="margin: 0").row.expanded.callout.secondary
+			.medium-6.columns
+				ul.menu
+					each item in itemsName
+						+menuItem(item)
+			.medium-6.columns
+				ul.menu.align-right
+					li.menu-text Copyright © 2099 Random Mag

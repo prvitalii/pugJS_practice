@@ -1,0 +1,17 @@
+doctype html
+html(lang="en").no-js
+	include includes/head.pug
+	include includes/data.pug
+	include includes/mixins.pug
+
+body
+	header
+		+header
+	+showMainArticle("BREAKING NEWS")
+	.row.small-up-3.medium-up-4.large-up-5
+	while countBrNews < 5
+		+brNewsCol(count++)
+	+showMainArticle("LATEST STORIES")
+	+mainContent
+	footer
+		+footer
